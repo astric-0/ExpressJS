@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Express JS</title>
+        <style>
+            body{
+                background-color: aliceblue;
+            }            
+
+            button{
+                background-color: blueviolet;
+                color:white;
+                padding: 10px;                
+                border-style: none;
+                border-inline-style: none;
+                border-radius: 8px;
+                cursor: pointer;
+                margin: 50px auto;
+                font-size: larger;                                
+            }
+
+            td{
+                padding: 20px;                                       
+            }
+
+            tr{                
+                border-bottom:2px solid rgb(255, 255, 255);                       
+            }
+
+            table{                
+                background-color: rgb(78, 60, 95);   
+                color:white;      
+                border-collapse: collapse;
+                border-spacing:0px;    
+                border-radius: 15px;    
+                margin: 0px auto;  
+            }
+
+            .flex{
+                display: flex;
+                width: 100%;
+            }
+            
+            #dataBox{
+                margin-top: 50px;
+            }
+        </style>
+    </head>
+<body>
+    <div class="flex">
+        <button type="button">GET Data</button>
+    </div>
+
+    <div class="flex" id="dataBox">
+    </div>
+
+    <script>
+        document.querySelector("button").addEventListener("click", function(){
+            let req = new XMLHttpRequest();
+            let url = "http://localhost:3000/getData";
+
+            req.open("GET",url);
+            req.send();
+
+            req.addEventListener("load",function(){
+                let data = this.responseText;
+                document.querySelector("#dataBox").innerHTML=data;
+            });
+        });
+    </script>
+
+</body>
+</html>
